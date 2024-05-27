@@ -8,3 +8,36 @@ body {
   width: 100%;
   min-height: 100%;
 }
+
+@layer components {
+  .nav {
+    @apply flex items-center;
+    @apply bg-zinc-400/15;
+    @apply h-12;
+    @apply px-4;
+    @apply border-b border-gray-300;
+  }
+
+  .nav__brand {
+    @apply text-xl font-bold;
+    @apply flex items-center space-x-2;
+    @apply mr-4;
+    @apply h-full;
+  }
+
+  .nav__list {
+    @apply flex space-x-2 items-center;
+    @apply h-full;
+  }
+
+  .nav__item {
+    @apply text-zinc-400 hover:text-zinc-800;
+    @apply h-full content-center;
+  }
+
+  .nav__brand--selected,
+  .nav__item--selected {
+    @apply border-b-2 border-orange-500;
+    @apply text-zinc-900;
+  }
+}

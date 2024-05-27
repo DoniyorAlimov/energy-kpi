@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model AssetType {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(255)
+
+  assets Asset[]
+}
+
+model Asset {
+  id            Int    @id @default(autoincrement())
+  name          String @unique @db.VarChar(255)
+  parentAssetId Int?
+  assetTypeId   Int
+
+  target      Target?
+  attributes  Attribute[]
+  parentAsset Asset?      @relation("Assets", fields: [parentAssetId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  assetType   AssetType   @relation(fields: [assetTypeId], references: [id])
+  children    Asset[]     @relation("Assets")
+}
+
+model Target {
+  id                              Int     @id @default(autoincrement())
+  productionTarget                Decimal
+  energyConsumptionTarget         Decimal
+  specificEnergyConsupmtionTarget Decimal
+  CO2EmissionTarget               Decimal
+  assetId                         Int     @unique
+
+  asset Asset @relation(fields: [assetId], references: [id], onDelete: Cascade)
+}
+
+model AttributeType {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(255)
+
+  attributes Attribute[]
+}
+
+model Attribute {
+  id              Int    @id @default(autoincrement())
+  name            String @db.VarChar(255)
+  assetId         Int
+  attributeTypeId Int
+
+  attributeType AttributeType @relation(fields: [attributeTypeId], references: [id])
+  asset         Asset         @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  assignments   Assignment[]
+}
+
+model Unit {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(255)
+
+  PHDTags PHDTag[]
+}
+
+model PHDTag {
+  id      Int    @id @default(autoincrement())
+  tagname String @unique @db.VarChar(300)
+  unitId  Int
+
+  unit        Unit         @relation(fields: [unitId], references: [id])
+  records     Record[]
+  assignments Assignment[]
+}
+
+model Assignment {
+  attributeId Int
+  PHDTagId    Int
+
+  attribute Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  PHDTag    PHDTag    @relation(fields: [PHDTagId], references: [id])
+
+  @@id([attributeId, PHDTagId])
+}
+
+model AggregationType {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+
+  records Record[]
+}
+
+model Record {
+  id                Int     @id @default(autoincrement())
+  value             Decimal
+  PHDTagId          Int
+  timestamp         String  @db.VarChar(300)
+  aggregationTypeId Int
+
+  PHDTag          PHDTag          @relation(fields: [PHDTagId], references: [id], onDelete: Cascade)
+  aggregationType AggregationType @relation(fields: [aggregationTypeId], references: [id])
+}
+
+model Constant {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique @db.VarChar(255)
+  value Decimal
+}
+
+model DataSource {
+  id       Int    @id @default(autoincrement())
+  host     String @db.VarChar(300)
+  port     Int
+  schedule String @db.VarChar(255)
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique @db.VarChar(50)
+  password  String   @db.VarChar(1024)
+  isAdmin   Boolean  @default(false) @db.Bit
+  joined_at DateTime @default(now()) @db.DateTime
+}

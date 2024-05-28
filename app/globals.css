@@ -10,13 +10,21 @@ body {
 }
 
 @layer components {
+  /* Main workspace */
+  .main {
+    @apply h-full;
+    @apply pt-12;
+  }
+
   /* Navbars */
   .nav {
     @apply flex items-center;
     @apply bg-zinc-400/15;
-    @apply h-12;
+    @apply h-12 w-full;
     @apply px-4;
     @apply border-b border-gray-300;
+    @apply absolute;
+    @apply z-10;
   }
 
   .nav__brand {
@@ -45,7 +53,7 @@ body {
   /* List-view */
   .list-view {
     @apply border-r;
-    @apply w-48;
+    @apply w-48 h-full;
     @apply py-4;
   }
 

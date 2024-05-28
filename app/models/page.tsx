@@ -1,9 +1,16 @@
-import React from 'react'
+import { getRootArea } from "@/misc/areas";
+import AreaListWrapper from "./AreaListWrapper";
+import ListView from "./ListView";
 
-const ModelsPage = () => {
+const ModelsPage = async () => {
+  const rootArea = await getRootArea();
+
   return (
-    <div>ModelsPage</div>
-  )
-}
+    <ListView>
+      <div className="list-view__heading">Areas</div>
+      <AreaListWrapper area={rootArea!} />
+    </ListView>
+  );
+};
 
-export default ModelsPage
+export default ModelsPage;

@@ -9,13 +9,43 @@ body {
   min-height: 100%;
 }
 
+/* width */
+.scroll::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
 @layer components {
+  /* Main workspace */
+  .main {
+    @apply h-full;
+    @apply pt-12;
+  }
+
+  /* Navbars */
   .nav {
     @apply flex items-center;
     @apply bg-zinc-400/15;
-    @apply h-12;
+    @apply h-12 w-full;
     @apply px-4;
     @apply border-b border-gray-300;
+    @apply absolute;
+    @apply z-10;
   }
 
   .nav__brand {
@@ -39,5 +69,33 @@ body {
   .nav__item--selected {
     @apply border-b-2 border-orange-500;
     @apply text-zinc-900;
+  }
+
+  /* List-view */
+  .list-view {
+    @apply border-r;
+    @apply w-48 h-full;
+    @apply py-4 overflow-auto;
+  }
+
+  .list-view__heading {
+    @apply text-xl font-bold;
+    @apply px-4 mb-3;
+  }
+
+  .list-view__list {
+    @apply ml-2;
+  }
+
+  .list-view__item {
+    @apply text-zinc-600 hover:text-zinc-800 hover:font-semibold;
+    @apply pl-2  mb-1;
+    @apply hover:border-l-2 hover:border-orange-500;
+    @apply cursor-pointer;
+  }
+
+  .list-view__item--selected {
+    @apply text-zinc-900 font-semibold;
+    @apply border-l-2 border-orange-600;
   }
 }

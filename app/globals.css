@@ -84,13 +84,18 @@ body {
   }
 
   .list-view__list {
-    @apply relative left-2;
+    @apply ml-2;
   }
 
   .list-view__item {
-    @apply text-zinc-600 hover:text-zinc-900 hover:font-semibold;
+    @apply text-zinc-600 hover:text-zinc-800 hover:font-semibold;
     @apply pl-2  mb-1;
     @apply hover:border-l-2 hover:border-orange-500;
     @apply cursor-pointer;
+  }
+
+  .list-view__item--selected {
+    @apply text-zinc-900 font-semibold;
+    @apply border-l-2 border-orange-600;
   }
 }

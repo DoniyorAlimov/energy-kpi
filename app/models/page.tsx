@@ -1,19 +1,23 @@
 import prisma from "@/prisma/client";
-import React from "react";
-import _ from "lodash";
 import { Asset as Base } from "@prisma/client";
+import AreaListWrapper from "./AreaListWrapper";
 
-interface Asset extends Base {
+export interface Asset extends Base {
   children: Asset[];
 }
 
 const ModelsPage = async () => {
-  const areasTree = await getAreasTree();
+  const rootArea = await getRootArea();
 
-  return <div>ModelsPage</div>;
+  return (
+    <div className="list-view">
+      <div className="list-view__heading">Areas</div>
+      <AreaListWrapper area={rootArea!} />
+    </div>
+  );
 };
 
-const getAreasTree = async (): Promise<Asset | null> => {
+const getRootArea = async (): Promise<Asset | null> => {
   const AreaType = await prisma.assetType.findUnique({
     where: { name: "area" },
   });

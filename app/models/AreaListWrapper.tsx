@@ -1,6 +1,5 @@
-import React from "react";
+import { Asset } from "@/entities/Assets";
 import AreasList from "./AreasList";
-import { Asset } from "./page";
 
 const AreaListWrapper = ({ area }: { area: Asset }) => {
   return (

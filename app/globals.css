@@ -9,6 +9,27 @@ body {
   min-height: 100%;
 }
 
+/* width */
+.scroll::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
 @layer components {
   /* Main workspace */
   .main {
@@ -54,7 +75,7 @@ body {
   .list-view {
     @apply border-r;
     @apply w-48 h-full;
-    @apply py-4;
+    @apply py-4 overflow-auto;
   }
 
   .list-view__heading {

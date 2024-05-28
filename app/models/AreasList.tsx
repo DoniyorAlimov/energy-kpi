@@ -1,7 +1,7 @@
 "use client";
 
+import { Asset } from "@/entities/Assets";
 import { useState } from "react";
-import { Asset } from "./page";
 
 const AreasList = ({ area }: { area: Asset }) => {
   const [showChildren, setShowChildren] = useState(false);

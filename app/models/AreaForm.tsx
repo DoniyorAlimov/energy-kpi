@@ -2,23 +2,21 @@
 
 import { Asset } from "@/entities/Assets";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { z } from "zod";
 import { areaSchema } from "../validationSchema";
-import createArea from "./actions/createArea";
 
 export type AreaFormData = z.infer<typeof areaSchema>;
 
 const AreaForm = ({
   area,
-  onSucces,
   isFormVisible,
+  onHandleSubmit,
 }: {
   area?: Asset;
-  onSucces?: () => void;
   isFormVisible?: boolean;
+  onHandleSubmit: (dataa: AreaFormData) => void;
 }) => {
   const {
     register,
@@ -30,14 +28,7 @@ const AreaForm = ({
   });
 
   const onSubmit = async (data: AreaFormData) => {
-    const response = await createArea(data.name, area?.id!);
-    if (response?.error) {
-      toast.error(response.error);
-    } else {
-      toast.success("Area added");
-      reset();
-      if (onSucces) onSucces();
-    }
+    onHandleSubmit(data);
   };
 
   useEffect(() => {

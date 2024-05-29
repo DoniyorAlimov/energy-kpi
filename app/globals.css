@@ -177,4 +177,13 @@ body {
     @apply text-white;
     @apply hover:bg-blue-600;
   }
+
+  .btn--outline {
+    @apply border border-zinc-400/15;
+    @apply hover:bg-zinc-400/15;
+  }
+
+  .btn--xs {
+    @apply text-xs;
+  }
 }

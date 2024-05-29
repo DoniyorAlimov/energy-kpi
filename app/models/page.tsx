@@ -1,4 +1,5 @@
 import { getRootArea } from "@/misc/areas";
+import AreaCreateButton from "./AreaCreateButton";
 import AreaListWrapper from "./AreaListWrapper";
 import ListView from "./ListView";
 
@@ -9,6 +10,7 @@ const ModelsPage = async () => {
     <ListView>
       <div className="list-view__heading">Areas</div>
       <AreaListWrapper area={rootArea!} />
+      {!rootArea && <AreaCreateButton />}
     </ListView>
   );
 };

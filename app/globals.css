@@ -137,4 +137,44 @@ body {
     @apply rounded-md;
     @apply hover:bg-gray-200;
   }
+
+  /* Inputs */
+  .input {
+    @apply py-2 px-3;
+    @apply rounded-md;
+    @apply outline-none;
+    @apply border border-gray-200 hover:ring focus:ring;
+  }
+
+  .input__group {
+    @apply flex flex-col;
+    @apply mb-5;
+  }
+
+  .input--disabled {
+    @apply bg-gray-100;
+    @apply hover:ring-0;
+  }
+
+  .input__label {
+    @apply mb-2;
+  }
+
+  .input__error {
+    @apply text-red-500 text-sm mt-2;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply border-0 rounded-lg;
+    @apply cursor-pointer;
+    @apply text-center whitespace-nowrap uppercase font-semibold;
+    @apply py-1 px-2;
+  }
+
+  .btn--primary {
+    @apply bg-blue-500;
+    @apply text-white;
+    @apply hover:bg-blue-600;
+  }
 }

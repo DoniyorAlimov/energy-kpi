@@ -26,7 +26,7 @@ const AreasList = ({ area }: { area: Asset }) => {
       >
         <span onClick={handleClick}>{area.name}</span>
         <span>
-          <AreaCreateButton />
+          <AreaCreateButton area={area} />
         </span>
       </div>
       {showChildren && area.children && (

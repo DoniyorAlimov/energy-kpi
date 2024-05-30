@@ -4,12 +4,10 @@ import { Asset } from "@/entities/Assets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import FormInput from "../components/FormInput";
 import FormSubmit from "../components/FormSubmit";
+import { AreaFormData } from "../formData";
 import { areaSchema } from "../validationSchema";
-
-export type AreaFormData = z.infer<typeof areaSchema>;
 
 const CreateAreaForm = ({
   area,

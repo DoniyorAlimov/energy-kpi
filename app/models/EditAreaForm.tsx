@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FormInput from "../components/FormInput";
 import FormSubmit from "../components/FormSubmit";
+import { AreaFormData } from "../formData";
 import { areaSchema } from "../validationSchema";
-import { AreaFormData } from "./CreateAreaForm";
 
 const EditAreaForm = ({
   area,

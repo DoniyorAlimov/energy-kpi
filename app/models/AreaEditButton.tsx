@@ -6,7 +6,7 @@ import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
 import Modal from "../components/Modal";
-import { AreaFormData } from "./CreateAreaForm";
+import { AreaFormData } from "../formData";
 import EditAreaForm from "./EditAreaForm";
 import updateArea from "./actions/updateArea";
 

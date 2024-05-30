@@ -6,7 +6,8 @@ import { useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 import Modal from "../components/Modal";
-import CreateAreaForm, { AreaFormData } from "./CreateAreaForm";
+import { AreaFormData } from "../formData";
+import CreateAreaForm from "./CreateAreaForm";
 import createArea from "./actions/createArea";
 
 const AreaCreateButton = ({ area }: { area?: Asset }) => {

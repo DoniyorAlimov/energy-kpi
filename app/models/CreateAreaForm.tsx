@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { areaSchema } from "../validationSchema";
 import FormInput from "../components/FormInput";
+import FormSubmit from "../components/FormSubmit";
 
 export type AreaFormData = z.infer<typeof areaSchema>;
 
@@ -53,10 +54,8 @@ const CreateAreaForm = ({
           defaultValue={area.name}
         />
       )}
-      <div className="mt-10 flex justify-end w-full">
-        <button className="btn btn--primary w-24" type="submit">
-          Submit
-        </button>
+      <div className="mt-10 flex justify-end">
+        <FormSubmit label="Create" />
       </div>
     </form>
   );

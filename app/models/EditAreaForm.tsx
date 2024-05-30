@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FormInput from "../components/FormInput";
+import FormSubmit from "../components/FormSubmit";
 import { areaSchema } from "../validationSchema";
 import { AreaFormData } from "./CreateAreaForm";
 
@@ -44,10 +45,8 @@ const EditAreaForm = ({
         register={register}
       />
 
-      <div className="mt-10 flex justify-end w-full">
-        <button className="btn btn--primary w-24" type="submit">
-          Submit
-        </button>
+      <div className="mt-10 flex justify-end">
+        <FormSubmit label="Create" />
       </div>
     </form>
   );

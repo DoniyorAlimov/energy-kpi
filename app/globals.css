@@ -177,20 +177,22 @@ body {
   }
 
   .btn--disabled {
-    @apply bg-gray-200;
+    @apply opacity-65;
     @apply cursor-not-allowed;
-    @apply hover:bg-gray-300;
   }
 
   .btn--primary {
-    @apply bg-blue-500;
+    @apply bg-blue-500 hover:bg-blue-600;
     @apply text-white;
-    @apply hover:bg-blue-600;
+  }
+
+  .btn--accent {
+    @apply bg-red-500 hover:bg-red-600;
+    @apply text-white;
   }
 
   .btn--outline {
-    @apply border border-zinc-400/15;
-    @apply hover:bg-zinc-400/15;
+    @apply border border-zinc-400/15 hover:bg-zinc-400/15;
   }
 
   .btn--xs {

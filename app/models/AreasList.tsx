@@ -5,6 +5,7 @@ import useModelStore from "@/store/model";
 import classNames from "classnames";
 import { useState } from "react";
 import AreaCreateButton from "./AreaCreateButton";
+import AreaDeleteButton from "./AreaDeleteButton";
 import AreaEditButton from "./AreaEditButton";
 
 const AreasList = ({ area }: { area: Asset }) => {
@@ -29,6 +30,7 @@ const AreasList = ({ area }: { area: Asset }) => {
         <span className="list-view__icons-container">
           <AreaCreateButton area={area} />
           <AreaEditButton area={area} />
+          <AreaDeleteButton areaId={area.id} />
         </span>
       </div>
       {showChildren && area.children && (

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { areaSchema } from "../validationSchema";
+import FormInput from "../components/FormInput";
 
 export type AreaFormData = z.infer<typeof areaSchema>;
 
@@ -37,32 +38,20 @@ const CreateAreaForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="input__group">
-        <label htmlFor="name" className="input__label">
-          Area Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          className="input"
-          placeholder="Area name"
-          {...register("name")}
-        />
-        {errors.name && <p className="input__error">{errors.name.message}</p>}
-      </div>
+      <FormInput<AreaFormData>
+        label="Area name"
+        placeholder="Name"
+        name="name"
+        register={register}
+        error={errors.name?.message!}
+      />
       {area && (
-        <div className="input__group">
-          <label htmlFor="parent" className="input__label">
-            Parent Area
-          </label>
-          <input
-            id="parent"
-            type="text"
-            className="input input--disabled"
-            disabled
-            value={area.name || ""}
-          />
-        </div>
+        <FormInput
+          label="Parent Area"
+          name="parent"
+          disabled={true}
+          defaultValue={area.name}
+        />
       )}
       <div className="mt-10 flex justify-end w-full">
         <button className="btn btn--primary w-24" type="submit">

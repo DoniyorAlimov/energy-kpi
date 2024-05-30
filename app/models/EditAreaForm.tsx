@@ -4,6 +4,7 @@ import { Asset } from "@/entities/Assets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import FormInput from "../components/FormInput";
 import { areaSchema } from "../validationSchema";
 import { AreaFormData } from "./CreateAreaForm";
 
@@ -35,20 +36,13 @@ const EditAreaForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="input__group">
-        <label htmlFor="name" className="input__label">
-          Area Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          className="input"
-          placeholder="Area name"
-          {...register("name")}
-          defaultValue={area.name}
-        />
-        {errors.name && <p className="input__error">{errors.name.message}</p>}
-      </div>
+      <FormInput<AreaFormData>
+        label="Area name"
+        placeholder="Name"
+        defaultValue={area.name}
+        name="name"
+        register={register}
+      />
 
       <div className="mt-10 flex justify-end w-full">
         <button className="btn btn--primary w-24" type="submit">

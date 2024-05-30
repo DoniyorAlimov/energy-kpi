@@ -11,8 +11,7 @@ const FormSubmit = ({
   return (
     <button
       className={classNames({
-        btn: true,
-        "btn--primary": !disabled,
+        "btn btn--primary": true,
         "btn--disabled": disabled,
       })}
       type="submit"

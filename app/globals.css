@@ -100,6 +100,10 @@ body {
     @apply border-l-2 border-orange-600;
   }
 
+  .list-view__icons-container {
+    @apply flex items-center;
+  }
+
   .list-view__icon {
     @apply opacity-0 hover:opacity-100;
     @apply transition;
@@ -170,6 +174,12 @@ body {
     @apply cursor-pointer;
     @apply text-center whitespace-nowrap uppercase font-semibold;
     @apply py-1 px-2;
+  }
+
+  .btn--disabled {
+    @apply bg-gray-200;
+    @apply cursor-not-allowed;
+    @apply hover:bg-gray-300;
   }
 
   .btn--primary {

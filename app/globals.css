@@ -176,6 +176,12 @@ body {
     @apply py-1 px-2;
   }
 
+  .btn--disabled {
+    @apply bg-gray-200;
+    @apply cursor-not-allowed;
+    @apply hover:bg-gray-300;
+  }
+
   .btn--primary {
     @apply bg-blue-500;
     @apply text-white;

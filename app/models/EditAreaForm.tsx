@@ -12,10 +12,12 @@ import { AreaFormData } from "./CreateAreaForm";
 const EditAreaForm = ({
   area,
   isFormVisible,
+  isPending = false,
   onHandleSubmit,
 }: {
   area: Asset;
   isFormVisible?: boolean;
+  isPending?: boolean;
   onHandleSubmit: (dataa: AreaFormData) => void;
 }) => {
   const {
@@ -46,7 +48,7 @@ const EditAreaForm = ({
       />
 
       <div className="mt-10 flex justify-end">
-        <FormSubmit label="Create" />
+        <FormSubmit label="Update" disabled={isPending} />
       </div>
     </form>
   );

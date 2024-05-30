@@ -5,19 +5,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { areaSchema } from "../validationSchema";
 import FormInput from "../components/FormInput";
 import FormSubmit from "../components/FormSubmit";
+import { areaSchema } from "../validationSchema";
 
 export type AreaFormData = z.infer<typeof areaSchema>;
 
 const CreateAreaForm = ({
   area,
   isFormVisible,
+  isPending = false,
   onHandleSubmit,
 }: {
   area?: Asset;
   isFormVisible?: boolean;
+  isPending?: boolean;
   onHandleSubmit: (dataa: AreaFormData) => void;
 }) => {
   const {
@@ -55,7 +57,7 @@ const CreateAreaForm = ({
         />
       )}
       <div className="mt-10 flex justify-end">
-        <FormSubmit label="Create" />
+        <FormSubmit label="Create" disabled={isPending} />
       </div>
     </form>
   );

@@ -2,6 +2,7 @@
 
 import { Asset } from "@/entities/Assets";
 import useDisclosure from "@/hooks/useDisclosure";
+import { useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 import Modal from "../components/Modal";
@@ -10,8 +11,10 @@ import createArea from "./actions/createArea";
 
 const AreaCreateButton = ({ area }: { area?: Asset }) => {
   const { isOpen, handleClose, handleOpen } = useDisclosure();
+  const [isPending, setIsPending] = useState(false);
 
   const onHandleSubmit = async (data: AreaFormData) => {
+    setIsPending(true);
     const response = await createArea(data.name, area?.id!);
     if (response?.error) {
       toast.error(response.error);
@@ -19,6 +22,7 @@ const AreaCreateButton = ({ area }: { area?: Asset }) => {
       toast.success("Area added");
       handleClose();
     }
+    setIsPending(false);
   };
 
   return (
@@ -41,6 +45,7 @@ const AreaCreateButton = ({ area }: { area?: Asset }) => {
             area={area}
             isFormVisible={isOpen}
             onHandleSubmit={onHandleSubmit}
+            isPending={isPending}
           />
         }
       />

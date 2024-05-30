@@ -2,6 +2,7 @@
 
 import { Asset } from "@/entities/Assets";
 import useDisclosure from "@/hooks/useDisclosure";
+import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
 import Modal from "../components/Modal";
@@ -11,8 +12,10 @@ import updateArea from "./actions/updateArea";
 
 const AreaEditButton = ({ area }: { area: Asset }) => {
   const { isOpen, handleClose, handleOpen } = useDisclosure();
+  const [isPending, setIsPending] = useState(false);
 
   const onHandleSubmit = async (data: AreaFormData) => {
+    setIsPending(true);
     const response = await updateArea(area.id, data.name);
     if (response?.error) {
       toast.error(response.error);
@@ -20,6 +23,7 @@ const AreaEditButton = ({ area }: { area: Asset }) => {
       toast.success("Area updated");
       handleClose();
     }
+    setIsPending(false);
   };
 
   return (
@@ -36,6 +40,7 @@ const AreaEditButton = ({ area }: { area: Asset }) => {
             area={area}
             isFormVisible={isOpen}
             onHandleSubmit={onHandleSubmit}
+            isPending={isPending}
           />
         }
       />

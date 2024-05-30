@@ -5,6 +5,7 @@ import useModelStore from "@/store/model";
 import classNames from "classnames";
 import { useState } from "react";
 import AreaCreateButton from "./AreaCreateButton";
+import AreaEditButton from "./AreaEditButton";
 
 const AreasList = ({ area }: { area: Asset }) => {
   const [showChildren, setShowChildren] = useState(false);
@@ -25,8 +26,9 @@ const AreasList = ({ area }: { area: Asset }) => {
         })}
       >
         <span onClick={handleClick}>{area.name}</span>
-        <span>
+        <span className="list-view__icons-container">
           <AreaCreateButton area={area} />
+          <AreaEditButton area={area} />
         </span>
       </div>
       {showChildren && area.children && (
